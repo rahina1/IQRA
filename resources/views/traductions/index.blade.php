@@ -73,53 +73,48 @@
                 </div>
             </div>
 
-            <!-- LISTE DES TRADUCTIONS -->
+            <!-- LISTE DES TRADUCTIONS PAR LANGUE -->
             <div class="mt-5">
                 <h2 class="h4 mb-4">Liste des Traductions</h2>
+
                 @if ($traductions->isEmpty())
                     <p class="text-muted">Aucune traduction trouvée.</p>
                 @else
-                    <div class="list-group">
-                        @foreach ($traductions as $traduction)
-                            <div class="col-md-6">
-                                <div class="card shadow-sm border-0 h-100">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success">
-                                            Sourate {{ $traduction->verset->sourate->numero }} –
-                                            {{ $traduction->verset->sourate->nom_transliteration }}
-                                        </h5>
-                                        <p class="mb-2 text-muted">Verset {{ $traduction->verset->numero }}</p>
-
-                                        <p class="mb-3 fs-4 text-arabic">{{ $traduction->verset->texte_arabe }}</p>
-
-                                        <p class="mb-3">
-                                            <strong>Langue :</strong> {{ ucfirst($traduction->langue) }}
-                                        </p>
-
-                                        <p>
-
-                                            {{ $traduction->texte_traduction ?? 'Non disponible' }}
-                                        </p>
-
-                                        @if ($traduction->audio_path)
-                                            <audio controls src="" preload="auto">
-                                                Votre navigateur ne supporte pas l'audio.
-                                            </audio>
-                                        @else
-                                            <p class="text-warning mt-3">Aucun audio disponible</p>
-                                        @endif
-
-                                        <hr>
-
-                                        <p class="text-muted small">
-                                            Traduit par : {{ $traduction->erudit->nom }}
-                                            ({{ $traduction->erudit->nationalite }})
-                                        </p>
-                                    </div>
-                                </div>
+                    <!-- Zarma -->
+                    @if ($traductions->where('langue', 'zarma')->count() > 0)
+                        <div class="mb-5">
+                            <h3 class="h5 mb-3 text-success border-bottom pb-2">Traductions en Zarma</h3>
+                            <div class="row g-4">
+                                @foreach ($traductions->where('langue', 'zarma') as $traduction)
+                                    @include('traductions.traduction-card', ['traduction' => $traduction])
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endif
+
+                    <!-- Haoussa -->
+                    @if ($traductions->where('langue', 'haoussa')->count() > 0)
+                        <div class="mb-5">
+                            <h3 class="h5 mb-3 text-success border-bottom pb-2">Traductions en Haoussa</h3>
+                            <div class="row g-4">
+                                @foreach ($traductions->where('langue', 'haoussa') as $traduction)
+                                    @include('traductions.traduction-card', ['traduction' => $traduction])
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Français -->
+                    @if ($traductions->where('langue', 'francais')->count() > 0)
+                        <div class="mb-5">
+                            <h3 class="h5 mb-3 text-success border-bottom pb-2">Traductions en Français</h3>
+                            <div class="row g-4">
+                                @foreach ($traductions->where('langue', 'francais') as $traduction)
+                                    @include('traductions.traduction-card', ['traduction' => $traduction])
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>

@@ -62,7 +62,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('hadiths.index') }}">Hadiths du Jour</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('cours.index') }}">Cours Islamiques</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="{{ route('cours.index') }}">Concours</a></li>
                 </ul>
             </div>
         </div>

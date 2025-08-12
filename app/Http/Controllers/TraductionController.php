@@ -43,12 +43,7 @@ class TraductionController extends Controller
     }
 
 
-    // Affiche la liste des sourates
-    public function sourate()
-    {
-        $sourates = Sourate::all(); //  sourates
-        return view('traductions.sourate', compact('sourates'));
-    }
+
 
 
     // Affiche la liste des versets

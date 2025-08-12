@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Verset;
-use Illuminate\Http\Request;
+
 
 class VersetController extends Controller
 {
